@@ -1,0 +1,39 @@
+
+{
+  "PILOGIN_DEV": "https://",
+  "PILOGIN": "https://",
+
+  "REMOTE_OBS_SRC": "",
+  "TOO_REQUEST_SRC": "",
+  "TOO_REPORT_SRC": "",
+  "VACCINE_SRC": "",
+  "OBSLOG": "",
+  "COVSHEET": "",
+  "POC_SRC": "",
+
+  "UPDATE_INFO_SRC": "",
+  "SSH_SRC": "",
+
+  "TARGET_LIST_SRC": "https://",
+  "LRIS_CONFIG_SRC": "https://",
+  "DEIMOS_CONFIG_SRC": "https://",
+  "PROPOSAL_APPLY_SRC": "https://",
+
+  "SIAS_SRC": "https://",
+  "KOA_SRC": "https://",
+
+  "TELSCHED_SRC": "https://",
+  "INST_SRC": "https://",
+  "MKWC_SRC": "http://",
+  "VSQ_SRC": "https://",
+  "APPLY_SRC": "https://",
+
+  "LOCAL_HOST": "https://",
+  "TELSCHED_API": "",
+  "PROPOSAL_API": "",
+  "KOARTI_API":  "",
+  "METRICS_API":  "",
+  "USERINFO":  "",
+
+  "LOGOUT": ""
+}
