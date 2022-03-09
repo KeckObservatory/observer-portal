@@ -21,7 +21,7 @@ import SchedTable from "./SchedTable";
 import PropTable from "./ProposalTable";
 import InfoTable from "./InfoTable";
 import {style_sheet} from "./Styles"
-import PlanetAnimation from "./PlanetAnimation/Planets";
+//import PlanetAnimation from "./PlanetAnimation/Planets";
 import URLS_CONFIG from "./urls_config.live.json";
 
 const useStyles = style_sheet()
@@ -92,7 +92,7 @@ export default function Dashboard(props) {
             </Grid>
 
             <Grid item xs>
-              <PlanetAnimation />
+              {/* <PlanetAnimation /> */}
             </Grid>
 
             <Grid item xs>
