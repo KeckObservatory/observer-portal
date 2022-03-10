@@ -109,7 +109,7 @@ class TonightStaff extends React.Component {
       let contact_indx = {sa_keck2: 1, sa_keck1: 1}
 
       for (let i = 0; i < staff.length; i++) {
-        if (staff[i]["Type"] === "sa") {
+        if (staff[i]["Type"] === "sa" || staff[i]["Type"] === "saoc") {
           if (staff[i]["TelNr"] === "1") {
             staff_indx.sa_keck1 = i;
           } else {
