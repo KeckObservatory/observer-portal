@@ -55,7 +55,7 @@ class SchedTable extends React.Component {
         return (
           <Table size="small" aria-label="Schedule">
             <TableHead  className={this.props.classes.small_header}>
-              <TableCell align={'left'} style={{width: '20%'}}>Your Scheduled is open for the Semester.</TableCell>
+              <TableCell align={'left'} style={{width: '20%'}}>Your Schedule is open for the Semester.</TableCell>
             </TableHead>
            </Table>
         )
