@@ -15,7 +15,7 @@ import LogoutIcon from '@material-ui/icons/AddOutlined';
 import StorageIcon from '@material-ui/icons/StorageOutlined';
 import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
-import URLS_CONFIG from "./urls_config.json";
+import URLS_CONFIG from "./urls_config.live.json";
 import Iframe from "./iframe";
 
 const useStyles = makeStyles((theme: Theme) =>
