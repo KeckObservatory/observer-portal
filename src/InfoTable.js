@@ -31,10 +31,12 @@ export function InfoTable(props) {
             <TableCell className={classes.infoCell}>Email:</TableCell>
             <TableCell className={classes.infoCell}>{userinfo.Email}</TableCell>
           </TableRow>
+{/*
           <TableRow>
             <TableCell className={classes.infoCell}>KOA ID:</TableCell>
             <TableCell className={classes.infoCell}>{userinfo.Id}</TableCell>
           </TableRow>
+*/}
           <TableRow>
             <TableCell className={classes.infoCell}>Affiliation:</TableCell>
             <TableCell className={classes.infoCell}>{userinfo.Affiliation}</TableCell>
