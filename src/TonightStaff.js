@@ -30,6 +30,7 @@ class TonightStaff extends React.Component {
       url1: "cmd=getNightStaff&date=" + date_str,
       // url2: "cmd=getNightStaff&date=" + date_str,
       url2: "cmd=getEmployee",
+
     };
   }
 
@@ -105,7 +106,7 @@ class TonightStaff extends React.Component {
       }
 
 
-      let staff_indx = {sa_keck2: 1, sa_keck1: 1, oa_keck1: 1, oa_keck2: 1}
+      let staff_indx = {sa_keck2: 1, sa_keck1: 1, oa_keck1: 1, oa_keck2: 1, oa_phone1: 1, oa_phone2: 1}
       let contact_indx = {sa_keck2: 1, sa_keck1: 1}
 
       for (let i = 0; i < staff.length; i++) {
@@ -118,8 +119,20 @@ class TonightStaff extends React.Component {
         } else if (staff[i]["Type"] === "oa" || staff[i]["Type"] === "oar") {
           if (staff[i]["TelNr"] === "1") {
             staff_indx.oa_keck1 = i;
+            if (staff[i]["Type"] == "oa") {
+              staff_indx.oa_phone1 = "808-935-3714 SU";
+            }
+            else {
+              staff_indx.oa_phone1 = "808-885-3787 HQ";
+            }
           } else {
             staff_indx.oa_keck2 = i;
+            if (staff[i]["Type"] == "oa") {
+              staff_indx.oa_phone2 = "808-935-3729 SU";
+            }
+            else {
+              staff_indx.oa_phone1 = "808-885-3885 HQ";
+            }
           }
         }
       }
@@ -154,14 +167,18 @@ class TonightStaff extends React.Component {
             </Grid>
             <Grid item xs>
               <div> {contact[contact_indx.sa_keck1]['CellPhone'] + " Cell"}</div>
+{/*
               <div> {"808-885-" +  contact[contact_indx.sa_keck1]['OfficePhone'] + " Off."}</div>
+*/}
             </Grid>
             <Grid item xs>
               <div> SA: {staff[staff_indx.sa_keck2]['FirstName'] + " " + staff[staff_indx.sa_keck2]['LastName']} </div>
             </Grid>
             <Grid item xs>
               <div> {contact[contact_indx.sa_keck2]['CellPhone'] + " Cell"}</div>
+{/*
               <div> {"808-885-" +  contact[contact_indx.sa_keck2]['OfficePhone']  + " Off."}</div>
+*/}
             </Grid>
           </Grid>
 
@@ -170,15 +187,13 @@ class TonightStaff extends React.Component {
               <div> OA: {staff[staff_indx.oa_keck1]['FirstName'] + " " + staff[staff_indx.oa_keck1]['LastName']} </div>
             </Grid>
             <Grid item xs>
-              <div> 808-935-3714 MK </div>
-              <div> 808-885-3878 HQ </div>
+              <div> {staff_indx.oa_phone1} </div>
             </Grid>
             <Grid item xs>
               <div> OA: {staff[staff_indx.oa_keck2]['FirstName'] + " " + staff[staff_indx.oa_keck2]['LastName']} </div>
             </Grid>
             <Grid item xs>
-              <div> 808-935-3729 MK </div>
-              <div> 808-885-3885 HQ </div>
+              <div> {staff_indx.oa_phone2} </div>
             </Grid>
           </Grid>
 
