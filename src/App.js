@@ -15,7 +15,7 @@ function App() {
     return (
         <div className="App">
             {!isloaded && <h1> page is loading...</h1>}
-            {isloaded && <Dashboard userinfo={user_info}/>}
+            {Object.keys(user_info).length > 0 && <Dashboard userinfo={user_info}/>}
         </div>
         )
 }
