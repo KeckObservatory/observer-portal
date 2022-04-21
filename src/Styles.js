@@ -8,7 +8,8 @@ export function style_sheet() {
     // const useStyles = makeStyles((theme) => ({
     return( makeStyles((theme) => ({
         root: {
-            background: 'linear-gradient(340deg, #F5F5F5 30%, #191970 90%)',
+//            background: 'linear-gradient(340deg, #F5F5F5 30%, #191970 90%)',
+            background: 'linear-gradient(340deg, #F5F5F5, #191970 70%)',
             border: 0,
             borderRadius: 3,
             boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
@@ -83,17 +84,20 @@ export function style_sheet() {
             borderRadius: 10,
         },
         toolbar: {
-            backgroundImage: `url(${BgImg})`,
+//            backgroundImage: `url(${BgImg})`,
+            background: '#191970',
             height: 60,
             paddingRight: 24, // keep right padding when drawer closed
         },
         bg_field: {
-            backgroundImage: `url(${BgImg})`,
+//            backgroundImage: `url(${BgImg})`,
+            background: '#191970',
             height: '100vh',
             paddingRight: 24, // keep right padding when drawer closed
         },
         header: {
-            backgroundImage: `url(${BgImg})`,
+//            backgroundImage: `url(${BgImg})`,
+            background: '#191970',
             font: "Philosopher",
             fontSize: 18,
             color: "#ffbf00",

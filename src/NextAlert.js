@@ -45,7 +45,7 @@ class Alerts extends React.Component {
       var date_beyond = calc_dates(items)[0];
 
       if (date_beyond !== undefined && date_beyond.length !== 0) {
-        next_str = "Observing Night: " + date_beyond[0].Date
+        next_str = "My Next Observing Night: " + date_beyond[0].Date
       }
 
       // TODO add alert for Post-obs Comment

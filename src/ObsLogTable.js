@@ -51,7 +51,7 @@ class ObsLogTable extends React.Component {
         return (
           <Table size="small" aria-label="Schedule">
             <TableHead  className={this.props.classes.small_header}>
-              <TableCell align={'left'} style={{width: '20%'}}>No Observing Logs Found.</TableCell>
+              <TableCell align={'left'} style={{width: '20%', fontWeight: 'bold'}}>My Observing Logs - none found</TableCell>
             </TableHead>
           </Table>
         )
@@ -65,18 +65,20 @@ class ObsLogTable extends React.Component {
         return (
           <Table size="small" aria-label="ObsLog">
             <TableHead  className={this.props.classes.small_header}>
-              <TableCell align={'left'} style={{width: '30%'}}>Last Observing Log</TableCell>
-              <TableCell align={'left'} style={{width: '50%'}}></TableCell>
+              <TableCell align={'left'} style={{width: '20%', fontWeight: 'bold'}}>My Observing Logs</TableCell>
               <TableCell align={'left'} style={{width: '20%'}}></TableCell>
+              <TableCell align={'left'} style={{width: '60%'}}></TableCell>
             </TableHead>
             <TableBody>
+              {Object.entries(obslogs[1]).map(item => (
             <TableRow>
-              <TableCell align={'left'} style={{width: '30%'}}  component="a"
-                         href={obslog_url + "?obslog=" + obslogs[1][1]['Name']}
-                         target="_blank">{obslogs[1][1]['Name']}</TableCell>
-              <TableCell align={'left'} style={{width: '50%'}}>{obslogs[1][1]['Title']}</TableCell>
-              <TableCell align={'left'} style={{width: '20%'}}>{obslogs[1][1]['Semester']}</TableCell>
+              <TableCell align={'left'} style={{width: '20%'}}  component="a"
+                         href={"/api/getObsLog?log=" + item[1]['Name']}
+                         target="_blank">{item[1]['Name']}</TableCell>
+              <TableCell align={'left'} style={{width: '20%'}}>{item[1]['Semester']}</TableCell>
+              <TableCell align={'left'} style={{width: '60%'}}>{item[1]['Title']}</TableCell>
             </TableRow>
+              ) ) }
           </TableBody>
         </Table>
         )

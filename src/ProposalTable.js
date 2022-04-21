@@ -60,7 +60,7 @@ class PropTable extends React.Component {
           return (
           <Table size="small" aria-label="Schedule">
             <TableHead  className={this.props.classes.small_header}>
-              <TableCell align={'left'} style={{width: '20%'}}>No Proposals Found.</TableCell>
+              <TableCell align={'left'} style={{width: '20%'}}>No Proposals Found</TableCell>
             </TableHead>
           </Table>
           )
@@ -73,9 +73,9 @@ class PropTable extends React.Component {
         var current_proposals = []
         const yr = current_yr()
         Object.entries(tab_info).map((vals) => {
-          if (vals[1]['KTN'].includes(yr)) {
+//          if (vals[1]['KTN'].includes(yr)) {
             current_proposals.push(vals)
-          }
+//          }
         })
 
         if (current_proposals.length === 0) {
@@ -86,7 +86,10 @@ class PropTable extends React.Component {
           } else {
             return (
               <Table size="small" aria-label="Schedule">
-                <TableHead> No Proposals Found. </TableHead>
+                <TableHead  className={this.props.classes.small_header}>
+                <TableCell align={'left'} style={{width: '20%', fontWeight: 'bold'}}>My Current Proposals - none found</TableCell>
+                <TableCell align={'left'} style={{width: '80%', whiteSpace: 'nowrap'}} component="a" href={URLS_CONFIG.PILOGIN+URLS_CONFIG.COVSHEET+"access=new"}>Submit a new cover sheet</TableCell>
+                </TableHead>
               </Table>
             )
           }
@@ -102,16 +105,23 @@ class PropTable extends React.Component {
           <TableScrollbar rows={nrows}>
           <Table size="small" aria-label="Proposals">
             <TableHead  className={this.props.classes.small_header}>
-              <TableCell align={'left'} style={{width: '30%'}}>Current Proposals</TableCell>
-              <TableCell align={'left'} style={{width: '60%'}}></TableCell>
-              <TableCell align={'left'} style={{width: '10%'}}></TableCell>
+              <TableRow>
+                <TableCell align={'left'} style={{fontWeight: 'bold'}}>My Current Proposals</TableCell>
+                <TableCell align={'left'} component="a" href={URLS_CONFIG.PILOGIN+URLS_CONFIG.COVSHEET+"access=new"}>Submit a new cover sheet</TableCell>
+                <TableCell align={'left'}></TableCell>
+                <TableCell align={'left'}></TableCell>
+                <TableCell align={'left'}></TableCell>
+              </TableRow>
             </TableHead>
             <TableBody>
               {current_proposals.map((vals) => (
                 <TableRow>
-                  <TableCell align={'left'} style={{width: '30%'}}>{vals[1]['KTN']}</TableCell>
-                  <TableCell align={'left'} style={{width: '60%'}}>{vals[1]['ProgramTitle']}</TableCell>
-                  <TableCell align={'left'} style={{width: '10%'}}>{vals[1]['ProgramType']}</TableCell>
+                  <TableCell align={'left'} style={{width: '20%'}}>{vals[1]['KTN']}</TableCell>
+                  <TableCell align={'left'} style={{width: '45%'}}>{vals[1]['ProgramTitle']}</TableCell>
+                  <TableCell align={'left'} style={{width: '20%'}}>{vals[1]['ProgramType']}</TableCell>
+                  <TableCell align={'left'} style={{width: '5%'}} component="a" href={URLS_CONFIG.PILOGIN+URLS_CONFIG.COVSHEET+"ktn="+vals[1]['KTN']+"&access=PDF"}>PDF</TableCell>
+                  <TableCell align={'left'} style={{width: '5%'}}>EDIT</TableCell>
+                  <TableCell align={'left'} style={{width: '5%'}}>COPY</TableCell>
                 </TableRow>
                 )
               )}
