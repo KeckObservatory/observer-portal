@@ -101,7 +101,7 @@ class Twilight extends React.Component {
       return (
       <>
         <Box bgcolor={this.state.box_color}>
-          <Grid container direction="row" justifyContent="center" alignItems="center">
+          <Grid container direction="row" justifyContent="center" alignItems="top">
             <Grid item xs>
               <div> {times[0]["udate"]}  </div>
               <div> Mid-Point: {times[0]["midpoint"]} </div>

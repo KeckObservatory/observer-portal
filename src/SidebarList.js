@@ -11,6 +11,8 @@ import FlareOutlinedIcon from '@material-ui/icons/FlareOutlined';
 import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
 import SettingsIcon from '@material-ui/icons/Settings';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import LogoutIcon from '@material-ui/icons/AddOutlined';
+import StorageIcon from '@material-ui/icons/StorageOutlined';
 import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import URLS_CONFIG from "./urls_config.live.json";
@@ -85,13 +87,16 @@ export default function NestedList(props) {
 
       <Collapse in={openPreObs} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
+          <ListItem button component="a" href={URLS_CONFIG.ODT}>
+            <ListItemText classes={{primary:classes.subList}} primary="Observing Definition Tool" />
+          </ListItem>
           <ListItem button onClick={() => handlePageClick('apply')}>
             <ListItemText classes={{primary:classes.subList}} primary="Telescope Time Application" />
           </ListItem>
-          <ListItem button onClick={() => handlePageClick('cov_sheet')}>
+          <ListItem button component="a" href={URLS_CONFIG.PILOGIN+URLS_CONFIG.COVSHEET+"access=new"}>
             <ListItemText classes={{primary:classes.subList}} primary="Cover Sheet" />
           </ListItem>
-          <ListItem button onClick={() => handlePageClick('remote_req')}>
+          <ListItem button component="a" href={URLS_CONFIG.PILOGIN+URLS_CONFIG.REMOTE_OBS_SRC}>
             <ListItemText classes={{primary:classes.subList}} primary="Remote Observing Request" />
           </ListItem>
           <ListItem button onClick={() => handlePageClick('lris_config')}>
@@ -100,14 +105,17 @@ export default function NestedList(props) {
           <ListItem button onClick={() => handlePageClick('deimos_config')}>
             <ListItemText classes={{primary:classes.subList}} primary="DEIMOS Configuration" />
           </ListItem>
-          <ListItem button onClick={() => handlePageClick('too_request')}>
+          <ListItem button component="a" href={URLS_CONFIG.PILOGIN+URLS_CONFIG.TOO_REQUEST_SRC}>
             <ListItemText classes={{primary:classes.subList}} primary="ToO Request" />
           </ListItem>
           <ListItem button onClick={() => handlePageClick('target_list')}>
             <ListItemText classes={{primary:classes.subList}} primary="Target List" />
           </ListItem>
-          <ListItem button onClick={() => handlePageClick('vaccine_file')}>
+          <ListItem button component="a" href={URLS_CONFIG.PILOGIN+URLS_CONFIG.VACCINE_SRC}>
             <ListItemText classes={{primary:classes.subList}} primary="Vaccine File" />
+          </ListItem>
+          <ListItem button component="a" href={URLS_CONFIG.VSQ_SRC} target="_blank">
+            <ListItemText classes={{primary:classes.subList}} primary="VSQ Reservations" />
           </ListItem>
         </List>
       </Collapse>
@@ -124,13 +132,13 @@ export default function NestedList(props) {
       <Collapse in={openObs} timeout="auto" unmountOnExit>
       <List component="div" disablePadding>
         <ListItem button onClick={() => handlePageClick('inst_status')}>
-          <ListItemText classes={{primary:classes.subList}} primary="Instrument Status" />
+          <ListItemText classes={{primary:classes.subList}} primary="Instrument Status (SIAS)" />
         </ListItem>
         <ListItem button onClick={() => handlePageClick('sched_table')}>
-          <ListItemText classes={{primary:classes.subList}} primary="Observing Schedule" />
+          <ListItemText classes={{primary:classes.subList}} primary="My Observing Schedule" />
         </ListItem>
         <ListItem button onClick={() => handlePageClick('obslog_table')}>
-          <ListItemText classes={{primary:classes.subList}} primary="Observation Logs" />
+          <ListItemText classes={{primary:classes.subList}} primary="My Observation Logs" />
         </ListItem>
       </List>
       </Collapse>
@@ -148,15 +156,25 @@ export default function NestedList(props) {
       <Collapse in={openPostObs} timeout="auto" unmountOnExit>
         <List component="div" disablePadding >
 
+{/*
           <ListItem button onClick={() => handlePageClick('koa_page')}>
             <ListItemText classes={{primary:classes.subList}} primary="Keck Observatory Archive" />
           </ListItem>
+*/}
+          <ListItem button component="a" href={URLS_CONFIG.PILOGIN+URLS_CONFIG.POC_SRC}>
+            <ListItemText classes={{primary:classes.subList}} primary="Post Observing Comments" />
+          </ListItem>
+          <ListItem button component="a" href={URLS_CONFIG.PILOGIN+URLS_CONFIG.TOO_REPORT_SRC}>
+            <ListItemText classes={{primary:classes.subList}} primary="ToO Report" />
+          </ListItem>
+{/*
           <ListItem button onClick={() => handlePageClick('poc_form')}>
             <ListItemText classes={{primary:classes.subList}} primary="Post Observing Comments" />
           </ListItem>
           <ListItem button onClick={() => handlePageClick('too_report')}>
             <ListItemText classes={{primary:classes.subList}} primary="ToO Report" />
           </ListItem>
+*/}
         </List>
       </Collapse>
 
@@ -173,16 +191,16 @@ export default function NestedList(props) {
       <Collapse in={openResources} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItem button onClick={() => handlePageClick('telsched')}>
-            <ListItemText classes={{primary:classes.subList}} primary="Telescope Schedule" />
+            <ListItemText classes={{primary:classes.subList}} primary="Full Telescope Schedule" />
+          </ListItem>
+          <ListItem button component="a" href={URLS_CONFIG.KOA_SRC} target="_blank">
+            <ListItemText classes={{primary:classes.subList}} primary="KOA" />
           </ListItem>
           <ListItem button onClick={() => handlePageClick('inst_page')}>
-            <ListItemText classes={{primary:classes.subList}} primary="Instruments" />
+            <ListItemText classes={{primary:classes.subList}} primary="Instrument Info" />
           </ListItem>
           <ListItem button component="a" href={URLS_CONFIG.MKWC_SRC} target="_blank">
-            <ListItemText classes={{primary:classes.subList}} primary="Maunakea Weather" />
-          </ListItem>
-          <ListItem button onClick={() => handlePageClick('vsq_page')}>
-            <ListItemText classes={{primary:classes.subList}} primary="VSQ Reservations" />
+            <ListItemText classes={{primary:classes.subList}} primary="Maunakea Weather Center (MKWC)" />
           </ListItem>
         </List>
       </Collapse>
@@ -199,23 +217,29 @@ export default function NestedList(props) {
 
       <Collapse in={openSettings} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
+{/*
           <ListItem button onClick={() => handlePageClick('user_info')}>
             <ListItemText classes={{primary:classes.subList}} primary="User Information" />
           </ListItem>
           <ListItem button onClick={() => handlePageClick('update_info')}>
+*/}
+          <ListItem button component="a" href={URLS_CONFIG.PILOGIN+URLS_CONFIG.UPDATE_INFO_SRC}>
             <ListItemText classes={{primary:classes.subList}} primary="Update Information" />
           </ListItem>
+{/*
           <ListItem button onClick={() => handlePageClick('ssh_key')}>
+*/}
+          <ListItem button component="a" href={URLS_CONFIG.PILOGIN+URLS_CONFIG.SSH_SRC}>
             <ListItemText classes={{primary:classes.subList}} primary="Update SSH Key" />
           </ListItem>
-          <ListItem button component="a" href={URLS_CONFIG.LOGOUT}  target="_blank">
-            <ListItemText classes={{primary:classes.subList}} primary="Logout" />
-          </ListItem>
-          {/*<ListItem button onClick={() => handlePageClick('logout')}>*/}
-          {/*  <ListItemText classes={{primary:classes.subList}} primary="Logout" />*/}
-          {/*</ListItem>*/}
         </List>
       </Collapse>
+      <ListItem button component="a" href={URLS_CONFIG.LOGOUT}>
+        <ListItemIcon>
+          <LogoutIcon />
+        </ListItemIcon>
+        <ListItemText classes={{primary:classes.mainList}} primary="Logout" />
+      </ListItem>
 
     </List>
   );

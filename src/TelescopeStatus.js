@@ -104,6 +104,9 @@ class TelInst extends React.Component {
   render() {
     const {error, isLoaded_states, isLoaded_insts, status} = this.state;
 
+    const colors = {'other':'#F9C2C2', 'Ready':'#C2EEB9'};
+    const fonts  = {'other':'white', 'Ready':'black'};
+
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded_states || !isLoaded_insts) {
@@ -112,8 +115,17 @@ class TelInst extends React.Component {
       return (
         <>
           {Object.entries(status).map(([inst, state]) =>
-            <Grid container direction="row" justifyContent="center" alignItems="center">
-              <Grid item xs> {inst} : {state} </Grid>
+            <Grid container direction="row" justifyContent="center" alignItems="center" spacing={1}>
+              <Grid item xs={3}
+                         style={{color: fonts[state], backgroundColor: colors[state]}}
+                         align='left'>
+                         {inst}
+              </Grid>
+              <Grid item xs={2}
+                         style={{color: fonts[state], backgroundColor: colors[state]}}
+                         align='left'>
+                         {state}
+              </Grid>
             </Grid>
           )}
         </>

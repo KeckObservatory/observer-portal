@@ -40,13 +40,8 @@ export default function Dashboard(props) {
   const userinfo = props.userinfo
 
   // change from PILOGIN_DEV to PILOGIN to change the url root
-  const pilogin_root = URLS_CONFIG.PILOGIN_DEV
+  const pilogin_root = URLS_CONFIG.PILOGIN
 
-  // Siyi
-  // const obsid = "3178"
-  // John O'Meara
-  // const obsid = "1883"
-  // const obsid = "2003"
   const obsid = userinfo.Id
 
   const classes = useStyles();

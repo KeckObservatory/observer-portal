@@ -3,6 +3,7 @@ import {api_call, date_hst_until_morning, ColorLine} from "./Utils";
 import Grid from "@material-ui/core/Grid";
 import Box from '@material-ui/core/Box';
 import TelInst from "./TelescopeStatus";
+import InstrStatus from "./InstrumentStatus";
 
 
 class TonightStaff extends React.Component {
@@ -12,9 +13,11 @@ class TonightStaff extends React.Component {
     let date_str = date_hst_until_morning()
 
     this.state = {
+      obsid: props.obsid,
       error: null,
       isLoaded1: false,
       isLoaded2: false,
+      isLoaded3: false,
 
       // staff: [{"TelNr": 1, "Type": "oa", "LastName": "None", "FirstName": "None"},
       //         {"TelNr": 2, "Type": "oa", "LastName": "None", "FirstName": "None"},
@@ -26,10 +29,13 @@ class TonightStaff extends React.Component {
       staff: [],
       instrument: [],
       contact: [],
+      schedule: [],
 
       url1: "cmd=getNightStaff&date=" + date_str,
       // url2: "cmd=getNightStaff&date=" + date_str,
       url2: "cmd=getEmployee",
+      url3: "cmd=getSchedule&date=" + date_str,
+
     };
   }
 
@@ -76,6 +82,22 @@ class TonightStaff extends React.Component {
         });
       },
     )
+
+    api_call(this.state.url3, "telSched")
+    .then(
+      (result) => {
+        this.setState({
+          isLoaded3: true,
+          schedule: result,
+        });
+      },
+      (error) => {
+        this.setState({
+          isLoaded3: true,
+          error
+        });
+      },
+    )
   }
   componentDidMount() {
     this.getData()
@@ -91,7 +113,7 @@ class TonightStaff extends React.Component {
 
   render() {
 
-    const {error, isLoaded1, isLoaded2, staff, contact} = this.state;
+    const {obsid, error, isLoaded1, isLoaded2, isLoaded3, staff, contact, schedule} = this.state;
 
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -105,7 +127,7 @@ class TonightStaff extends React.Component {
       }
 
 
-      let staff_indx = {sa_keck2: 1, sa_keck1: 1, oa_keck1: 1, oa_keck2: 1}
+      let staff_indx = {sa_keck2: 1, sa_keck1: 1, oa_keck1: 1, oa_keck2: 1, oa_phone1: 1, oa_phone2: 1}
       let contact_indx = {sa_keck2: 1, sa_keck1: 1}
 
       for (let i = 0; i < staff.length; i++) {
@@ -118,8 +140,20 @@ class TonightStaff extends React.Component {
         } else if (staff[i]["Type"] === "oa" || staff[i]["Type"] === "oar") {
           if (staff[i]["TelNr"] === "1") {
             staff_indx.oa_keck1 = i;
+            if (staff[i]["Type"] == "oa") {
+              staff_indx.oa_phone1 = "808-935-3714 SU";
+            }
+            else {
+              staff_indx.oa_phone1 = "808-885-3787 HQ";
+            }
           } else {
             staff_indx.oa_keck2 = i;
+            if (staff[i]["Type"] == "oa") {
+              staff_indx.oa_phone2 = "808-935-3729 SU";
+            }
+            else {
+              staff_indx.oa_phone1 = "808-885-3885 HQ";
+            }
           }
         }
       }
@@ -134,57 +168,28 @@ class TonightStaff extends React.Component {
         }
       }
 
+      let isScheduled = false;
+      for (let i = 0 ; i < schedule.length ; i++) {
+        if (schedule[i]['ObsId'].includes(obsid) || schedule[i]['PiId'] === obsid) {
+            isScheduled = true;
+        }
+      }
+
       return (
       <>
-        <Box >
-
+        <Box>
           <Grid container direction="row" justifyContent="center" alignItems="center">
-            <Grid item xs>
+            <Grid item xs style={{paddingTop: "24px", fontSize: 18, fontWeight: 'bold'}}>
               Keck I
             </Grid>
-            <Grid item xs>
+            <Grid item xs style={{paddingTop: "24px", fontSize: 18, fontWeight: 'bold'}}>
               Keck II
             </Grid>
           </Grid>
-          <ColorLine color="black" />
 
-          <Grid container direction="row" justifyContent="center" alignItems="center">
-            <Grid item xs>
-              <div> SA: {staff[staff_indx.sa_keck1]['FirstName'] + " " + staff[staff_indx.sa_keck1]['LastName']} </div>
-            </Grid>
-            <Grid item xs>
-              <div> {contact[contact_indx.sa_keck1]['CellPhone'] + " Cell"}</div>
-              <div> {"808-885-" +  contact[contact_indx.sa_keck1]['OfficePhone'] + " Off."}</div>
-            </Grid>
-            <Grid item xs>
-              <div> SA: {staff[staff_indx.sa_keck2]['FirstName'] + " " + staff[staff_indx.sa_keck2]['LastName']} </div>
-            </Grid>
-            <Grid item xs>
-              <div> {contact[contact_indx.sa_keck2]['CellPhone'] + " Cell"}</div>
-              <div> {"808-885-" +  contact[contact_indx.sa_keck2]['OfficePhone']  + " Off."}</div>
-            </Grid>
-          </Grid>
-
-          <Grid container direction="row" justifyContent="center" alignItems="center">
-            <Grid item xs>
-              <div> OA: {staff[staff_indx.oa_keck1]['FirstName'] + " " + staff[staff_indx.oa_keck1]['LastName']} </div>
-            </Grid>
-            <Grid item xs>
-              <div> 808-935-3714 MK </div>
-              <div> 808-885-3878 HQ </div>
-            </Grid>
-            <Grid item xs>
-              <div> OA: {staff[staff_indx.oa_keck2]['FirstName'] + " " + staff[staff_indx.oa_keck2]['LastName']} </div>
-            </Grid>
-            <Grid item xs>
-              <div> 808-935-3729 MK </div>
-              <div> 808-885-3885 HQ </div>
-            </Grid>
-          </Grid>
-
-          <ColorLine color="black" />
-
-          <Grid container direction="row" justifyContent="center" alignItems="center">
+          {/* Show instrument status if isScheduled, else show instrument availability */}
+          {isScheduled ? (
+          <Grid container direction="row" justifyContent="center" alignItems="top">
 
             <Grid item xs>
               <TelInst tel_nr="1"/>
@@ -193,6 +198,59 @@ class TonightStaff extends React.Component {
               <TelInst tel_nr="2"/>
             </Grid>
           </Grid>
+          ) : (
+          <Grid container direction="row" justifyContent="center" alignItems="top">
+            <Grid item xs>
+              <InstrStatus tel_nr="1"/>
+            </Grid>
+            <Grid item xs>
+              <InstrStatus tel_nr="2"/>
+            </Grid>
+          </Grid>
+          )}
+
+          <div style={{ padding: 20 }}></div>
+
+          {isScheduled &&
+          <Grid container direction="row" justifyContent="left" alignItems="left">
+            <Grid item xs style={{fontWeight: 'bold'}}>Observing Assistant</Grid>
+            <Grid item xs style={{fontWeight: 'bold'}}>Staff Astronomer</Grid>
+            <Grid item xs style={{fontWeight: 'bold'}}>Observing Assistant</Grid>
+            <Grid item xs style={{fontWeight: 'bold'}}>Staff Astronomer</Grid>
+          </Grid>
+          }
+          {isScheduled &&
+          <Grid container direction="row" justifyContent="left" alignItems="left">
+            <Grid item xs>
+              <div>{staff[staff_indx.oa_keck1]['FirstName'] + " " + staff[staff_indx.oa_keck1]['LastName']}</div>
+            </Grid>
+            <Grid item xs>
+              <div>{staff[staff_indx.sa_keck1]['FirstName'] + " " + staff[staff_indx.sa_keck1]['LastName']}</div>
+            </Grid>
+            <Grid item xs>
+              <div>{staff[staff_indx.oa_keck2]['FirstName'] + " " + staff[staff_indx.oa_keck2]['LastName']}</div>
+            </Grid>
+            <Grid item xs>
+              <div>{staff[staff_indx.sa_keck2]['FirstName'] + " " + staff[staff_indx.sa_keck2]['LastName']}</div>
+            </Grid>
+          </Grid>
+          }
+          {isScheduled &&
+          <Grid container direction="row" justifyContent="left" alignItems="left">
+            <Grid item xs>
+              <div>{staff_indx.oa_phone1}</div>
+            </Grid>
+            <Grid item xs>
+              <div>{contact[contact_indx.sa_keck1]['CellPhone'] + " Cell"}</div>
+            </Grid>
+            <Grid item xs>
+              <div>{staff_indx.oa_phone2}</div>
+            </Grid>
+            <Grid item xs>
+              <div>{contact[contact_indx.sa_keck2]['CellPhone'] + " Cell"}</div>
+            </Grid>
+          </Grid>
+          }
 
         </Box>
       </>

@@ -30,7 +30,7 @@ export default function HomeView(props) {
       <div className={classes.root}>
         <Grid container direction="row" justifyContent="center" alignItems="left">
           <Grid item xs>
-            <div><TonightStaff /></div>
+            <div><TonightStaff obsid={obsid}/></div>
           </Grid>
         </Grid>
 

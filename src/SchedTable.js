@@ -1,6 +1,7 @@
 import React from 'react';
 import TableHead from "@material-ui/core/TableHead";
 import TableBody from "@material-ui/core/TableBody";
+import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import Table from "@material-ui/core/Table";
 import Box from '@material-ui/core/Box';
@@ -19,7 +20,7 @@ class SchedTable extends React.Component {
       error: null,
       isLoaded: false,
       items: [],
-      url: "cmd=getScheduleByUser&type=pi&obsid=" + props.obsid,
+      url: "cmd=getScheduleByUser&type=observer&obsid=" + props.obsid,
     };
 
   }
@@ -55,7 +56,7 @@ class SchedTable extends React.Component {
         return (
           <Table size="small" aria-label="Schedule">
             <TableHead  className={this.props.classes.small_header}>
-              <TableCell align={'left'} style={{width: '20%'}}>Your Scheduled is open for the Semester.</TableCell>
+              <TableCell align={'left'} style={{width: '20%', fontWeight: 'bold'}}>My Observing Schedule - no nights scheduled</TableCell>
             </TableHead>
            </Table>
         )
@@ -68,24 +69,32 @@ class SchedTable extends React.Component {
         return (
           <Table size="small" aria-label="Schedule">
             <TableHead  className={this.props.classes.small_header}>
-              <TableCell align={'left'} style={{width: '40%'}}>Observing Schedule</TableCell>
+              <TableCell align={'left'} style={{width: '20%', fontWeight: 'bold'}}><b>My Observing Schedule</b></TableCell>
+              <TableCell align={'left'} style={{width: '15%'}}></TableCell>
               <TableCell align={'left'} style={{width: '10%'}}></TableCell>
               <TableCell align={'left'} style={{width: '10%'}}></TableCell>
-              <TableCell align={'left'} style={{width: '40%'}}></TableCell>
+              <TableCell align={'left'} style={{width: '45%'}}></TableCell>
             </TableHead>
             <TableBody>
-              <TableCell align={'left'} style={{width: '40%'}}>
-                  {dates[0][0]['Date']} UT: {dates[0][0]['StartTime']} - {dates[0][0]['EndTime']}
-              </TableCell>
-              <TableCell align={'left'} style={{width: '10%'}}>
-                {dates[0][0]['Account']}
-              </TableCell>
-              <TableCell align={'left'} style={{width: '10%'}}>
-                {dates[0][0]['ProjCode']}
-              </TableCell>
-              <TableCell align={'left'} style={{width: '40%'}}>
-                {dates[0][0]['Observers']}
-              </TableCell>
+              {Object.entries(dates[0]).map(item => ( 
+              <TableRow>
+                <TableCell align={'left'} valign={'bottom'} style={{width: '20%'}}>
+                    {item[1]['Date']} HST
+                </TableCell>
+                <TableCell align={'left'} valign={'bottom'} style={{width: '15%'}}>
+                    {item[1]['StartTime']} - {item[1]['EndTime']} UT
+                </TableCell>
+                <TableCell align={'left'} valign={'bottom'} style={{width: '10%'}}>
+                  {item[1]['Account']}
+                </TableCell>
+                <TableCell align={'left'} valign={'bottom'} style={{width: '10%'}}>
+                  {item[1]['ProjCode']}
+                </TableCell>
+                <TableCell align={'left'} valign={'bottom'} style={{width: '45%'}}>
+                  {item[1]['Observers']}
+                </TableCell>
+              </TableRow>
+              ) ) }
             </TableBody>
           </Table>
         )
