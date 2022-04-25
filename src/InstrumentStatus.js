@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {api_call, date_hst_until_morning} from "./Utils";
 import Grid from "@material-ui/core/Grid";
+import Check from "@material-ui/icons/Check";
 
 class InstrStatus extends React.Component {
   constructor(props) {
@@ -106,6 +107,8 @@ class InstrStatus extends React.Component {
 
     const available = ['Not Available', 'TDA Ready', 'Scheduled'];
     const colors = ['#F9C2C2', '#D2EEB9'];
+    const icon = ['', <Check color="success" fontSize="small" valign="bottom"/>];
+
     console.log(status[0]);
 
     if (error) {
@@ -116,16 +119,19 @@ class InstrStatus extends React.Component {
       return (
         <>
           {Object.entries(status[0]).map(([instr, item]) =>
-            <Grid container direction="row" justifyContent="center" alignItems="center" spacing={1}>
+            <Grid container direction="row" justifyContent="center" alignItems="center" spacing={2}>
               <Grid item xs={2}
                          style={{color: 'black', backgroundColor: colors[item.Available]}}
                          align="left">
                          {instr}
               </Grid>
-              <Grid item xs={3}
+              <Grid item xs={2}
                          style={{color: 'black', backgroundColor: colors[item.Available]}}
                          align="left">
                          {available[item.Available+item.Scheduled]}
+              </Grid>
+              <Grid item xs={1} align="left">
+                         {icon[item.Available]}
               </Grid>
             </Grid>
           )}
