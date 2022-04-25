@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {api_call, date_hst_until_morning} from "./Utils";
 import Grid from "@material-ui/core/Grid";
+import Check from "@material-ui/icons/Check";
 
 class TelInst extends React.Component {
   constructor(props) {
@@ -104,8 +105,9 @@ class TelInst extends React.Component {
   render() {
     const {error, isLoaded_states, isLoaded_insts, status} = this.state;
 
-    const colors = {'other':'#F9C2C2', 'Ready':'#C2EEB9'};
-    const fonts  = {'other':'white', 'Ready':'black'};
+    const colors = {'Not Ready':'#F9C2C2', 'Ready':'#D2EEB9'};
+    const fonts  = {'Not Ready':'black', 'Ready':'black'};
+    const icon = {'Ready': <Check color="success" fontSize="small" valign="bottom"/>};
 
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -115,7 +117,7 @@ class TelInst extends React.Component {
       return (
         <>
           {Object.entries(status).map(([inst, state]) =>
-            <Grid container direction="row" justifyContent="center" alignItems="center" spacing={1}>
+            <Grid container direction="row" justifyContent="center" alignItems="center" spacing={2}>
               <Grid item xs={3}
                          style={{color: fonts[state], backgroundColor: colors[state]}}
                          align='left'>
@@ -125,6 +127,9 @@ class TelInst extends React.Component {
                          style={{color: fonts[state], backgroundColor: colors[state]}}
                          align='left'>
                          {state}
+              </Grid>
+              <Grid item xs={1} align="left">
+                         {icon[status]}
               </Grid>
             </Grid>
           )}
