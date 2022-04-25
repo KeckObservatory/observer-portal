@@ -179,10 +179,10 @@ class TonightStaff extends React.Component {
       <>
         <Box>
           <Grid container direction="row" justifyContent="center" alignItems="center">
-            <Grid item xs style={{paddingTop: "24px", fontSize: 18, fontWeight: 'bold'}}>
+            <Grid item xs align="center" style={{paddingTop: "12px", paddingBottom: "8px", fontSize: 18, fontWeight: 'bold'}}>
               Keck I
             </Grid>
-            <Grid item xs style={{paddingTop: "24px", fontSize: 18, fontWeight: 'bold'}}>
+            <Grid item xs align="center" style={{paddingTop: "12px", paddingBottom: "8px", fontSize: 18, fontWeight: 'bold'}}>
               Keck II
             </Grid>
           </Grid>
