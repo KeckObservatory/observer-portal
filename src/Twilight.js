@@ -100,31 +100,29 @@ class Twilight extends React.Component {
 
       return (
       <>
-        <Box bgcolor={this.state.box_color}>
+        <Box>
           <Grid container direction="row" justifyContent="center" alignItems="top">
             <Grid item xs>
-              <div> {times[0]["udate"]}  </div>
-              <div> Mid-Point: {times[0]["midpoint"]} </div>
+              <div> <UTclock zone={'Etc/GMT'} fmt={'YYYY-MM-DD HH:mm:ss'}/> UT&nbsp; </div>
+              <div> <UTclock zone={'Pacific/Honolulu'} fmt={'YYYY-MM-DD HH:mm:ss'}/> HST</div>
             </Grid>
             <Grid item xs>
-              <div> Sunset: {times[0]["sunset"]}  </div>
-              <div> 12-deg: {times[0]["dusk_12deg"]} </div>
-              <div> 18-deg: {times[0]["dusk_18deg"]}</div>
+              <div> Sunset: {times[0]["sunset"]} UT</div>
+              <div> Sunrise: {times[0]["sunrise"]} UT</div>
             </Grid>
             <Grid item xs>
-              <div> 18-deg: {times[0]["dawn_18deg"]} </div>
-              <div> 12-deg: {times[0]["dawn_12deg"]} </div>
-              <div> Sunrise: {times[0]["sunrise"]} </div>
-
+              <div> 12-deg: {times[0]["dusk_12deg"]} UT</div>
+              <div> Mid-Point: {times[0]["midpoint"]} UT</div>
+              <div> 12-deg: {times[0]["dawn_12deg"]} UT</div>
+            </Grid>
+            <Grid item xs>
+              <div> 18-deg: {times[0]["dusk_18deg"]} UT</div>
+              <div> 18-deg: {times[0]["dawn_18deg"]} UT</div>
             </Grid>
             <Grid item xs>
               <div> Moonrise: {times[0]["moonrise"]} </div>
               <div> Moonset: {times[0]["moonset"]} </div>
               <div> Illumination: {times[0]["moonillumination"]} </div>
-            </Grid>
-            <Grid item xs>
-              <div >UT:&nbsp; <UTclock zone={'Etc/GMT'} fmt={'HH:mm:ss'}/></div>
-              <div >HST: <UTclock zone={'Pacific/Honolulu'} fmt={'HH:mm:ss'}/></div>
             </Grid>
           </Grid>
         </Box>
