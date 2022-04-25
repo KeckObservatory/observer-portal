@@ -9,7 +9,8 @@ export function style_sheet() {
     return( makeStyles((theme) => ({
         root: {
 //            background: 'linear-gradient(340deg, #F5F5F5 30%, #191970 90%)',
-            background: 'linear-gradient(340deg, #F5F5F5, #191970 70%)',
+//            background: 'linear-gradient(340deg, #F5F5F5, #191970 70%)',
+            background: 'linear-gradient(340deg, #FFFFFF, #000000 80%)',
             border: 0,
             borderRadius: 3,
             boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
@@ -45,7 +46,8 @@ export function style_sheet() {
           textAlign: "center",
         },
         alert: {
-          background: 'linear-gradient(340deg, #000000 30%, #191970 90%)',
+//          background: 'linear-gradient(340deg, #000000 30%, #191970 90%)',
+          background: '#7F7E7E',
           height: 40,
           width: '85%',
           color: 'white',
@@ -85,19 +87,20 @@ export function style_sheet() {
         },
         toolbar: {
 //            backgroundImage: `url(${BgImg})`,
-            background: '#191970',
+            background: '#000000',
             height: 60,
             paddingRight: 24, // keep right padding when drawer closed
         },
         bg_field: {
 //            backgroundImage: `url(${BgImg})`,
-            background: '#191970',
+            background: '#000000',
             height: '100vh',
             paddingRight: 24, // keep right padding when drawer closed
         },
         header: {
 //            backgroundImage: `url(${BgImg})`,
-            background: '#191970',
+//            background: '#191970',
+            background: '#000000',
             font: "Philosopher",
             fontSize: 18,
             color: "#ffbf00",
@@ -140,7 +143,7 @@ export function style_sheet() {
         },
 
         toolbarIcon: {
-            background: '#191970',
+            background: '#000000',
             height: 60,
             color: 'white',
 
