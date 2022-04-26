@@ -129,7 +129,7 @@ class TelInst extends React.Component {
                          {state}
               </Grid>
               <Grid item xs={1} align="left">
-                         {icon[status]}
+                         {icon[state]}
               </Grid>
             </Grid>
           )}
