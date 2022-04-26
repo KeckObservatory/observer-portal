@@ -109,8 +109,6 @@ class InstrStatus extends React.Component {
     const colors = ['#F9C2C2', '#D2EEB9'];
     const icon = ['', <Check color="success" fontSize="small" valign="bottom"/>];
 
-    console.log(status[0]);
-
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded_inst) {
